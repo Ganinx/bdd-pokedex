@@ -5,9 +5,9 @@ $pdo = dbconnect();
 
 
 
-$reponse = $pdo->query('SELECT * FROM pokemon JOIN types ON types.id = pokemon.type_id');
+$reponse = $pdo->query('SELECT pokemon.*, types.name FROM pokemon JOIN types ON types.id = pokemon.type_id');
 $resultats = $reponse->fetchALL();
-var_dump($resultats);
+
 
 ?>
 
@@ -30,46 +30,11 @@ include 'navbar.php'
        <h1 class="text-center">Pokedex</h1>
        <?php
 
-foreach ($resultats as $pokemon){
-    $color='';
-    if($pokemon["name"] == "eau"){
-        $color = 'blue';
-    }elseif($pokemon["name"] == "feu"){
-        $color = 'red';
-    }elseif($pokemon["name"] == "plante"){
-        $color = 'green';
-    }elseif($pokemon["name"] == "normal"){
-        $color = 'white';
-    }elseif($pokemon["name"] == "electrique"){
-        $color = 'yellow';
-    }elseif($pokemon["name"] == "insecte"){
-        $color = '#4dc94d';
-    }elseif($pokemon["name"] == "vol"){
-        $color = '#9696db';
-    }elseif($pokemon["name"]=="poison"){
-        $color = '#aa5caa';
-    }
-    else{
-        $color = 'purple';
-    }
-   echo('<div class="card" style="width: 18rem;">
-  <img src="'.$pokemon["image"].'" class="card-img-top" alt="...">
-  <div class="card-body" style="background-color:'.$color.'">
-    <h5 class="card-title">'.$pokemon['nom'].'</h5>
-    <ul>
-    <li>attaque :'.$pokemon["attaque"].'</li>
-    <li>defense :'.$pokemon["defense"].'</li>
-    <li>pv :'.$pokemon["pv"].'</li>
-    <li>special :'.$pokemon["special"].'</li>
-</ul>
-    <a href="detail.php?id='.$pokemon["id"].'" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>');
-}
+include'card.php'
 ?>
    </div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

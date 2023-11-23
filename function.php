@@ -12,7 +12,6 @@ function dbconnect(){
     // Cette ligne demandera à pdo de renvoyer les erreurs SQL si il y en a
     $pdo->setAttribute(PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION);
-
     return $pdo;
 }
 catch (PDOException $e) {
