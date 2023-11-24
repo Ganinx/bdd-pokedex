@@ -19,7 +19,7 @@ $results = $query->fetchAll();
                 <?php
                 foreach ($results as $resultat) {
                     echo('<li class="nav-item">
-                    <a href="types.php?type='.$resultat["name"].'" class="nav-link" ><img src="'.$resultat["image_type"].'" style="max-width:70px" alt=""></a>
+                    <a href="types.php?type='.$resultat["name"].'" class="nav-link" ><img src="'.$resultat["image_type"].'" style="max-width:60px" alt=""></a>
                 </li>');
                 }
                 ?>
@@ -28,10 +28,17 @@ $results = $query->fetchAll();
                         filtre
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="filtre-attaque.php">Decroissant attaque</a></li>
-                        <li><a class="dropdown-item" href="filtre-defense.php">Decroissant defense</a></li>
-                        <li><a class="dropdown-item" href="filtre-pv.php">Decroissant pv</a></li>
-                        <li><a class="dropdown-item" href="filtre-special.php">Decroissant spécial</a></li>
+                        <?php
+                        echo('
+                        <li><a class="dropdown-item" href="index.php?filter=attaque&&order=asc">croissant attaque</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=attaque&&order=desc">Decroissant attaque</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=defense&&order=asc">croissant defense</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=defense&&order=desc">Decroissant defense</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=pv&&order=asc">croissant pv</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=pv&&order=desc">Decroissant pv</a></li>
+                        <li><a class="dropdown-item" href="index.php?filter=special&&order=asc">croissant spécial</a></li>
+                        <li><a class="dropdown-item" href="pokemon-add.php">rajouter un pokemon</a></li>');
+                        ?>
                     </ul>
                 </li>
             </ul>

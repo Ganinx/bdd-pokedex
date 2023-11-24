@@ -20,5 +20,29 @@ données : '.$e->getMessage());
     exit;
 }
 }
+
+function displayValidationBootstrapClass($errors, $inputName){
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    if(array_key_exists($inputName, $errors)){
+        echo('is-invalid');
+    }else{
+        echo('is-valid');
+    }
+}
+}
+
+function displayForValue($inputname){
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        echo($_POST[$inputname]);
+    }
+}
+
+function displayFormError($inputname, $errors){
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        if(array_key_exists($inputname,$errors)){
+            echo('<div class="invalid-feedback">'.$errors[$inputname].'</div>');
+        }
+    }
+}
 ?>
 

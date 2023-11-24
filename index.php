@@ -5,9 +5,29 @@ $pdo = dbconnect();
 
 
 
-$reponse = $pdo->query('SELECT pokemon.*, types.name FROM pokemon JOIN types ON types.id = pokemon.type_id');
-$resultats = $reponse->fetchALL();
 
+
+
+if(array_key_exists("filter",$_GET)){
+    $filterGood = ["attaque","defense","special","pv","vitesse"];
+    $orderGood = ["asc","desc"];
+    $filter = $_GET["filter"];
+    $order = $_GET["order"];
+    if(in_array($filter ,$filterGood) AND in_array($order, $orderGood)){
+        $query = $pdo->prepare("SELECT pokemon.*, types.name FROM pokemon JOIN types ON pokemon.type_id = types.id ORDER BY $filter $order");
+        $query -> execute();
+        $resultats = $query->fetchALL();
+        var_dump($filter);
+    }else{
+        echo('erreur');
+        die();
+    };
+
+}else{
+
+    $reponse = $pdo->query('SELECT pokemon.*, types.name FROM pokemon JOIN types ON types.id = pokemon.type_id');
+    $resultats = $reponse->fetchALL();
+}
 
 ?>
 
